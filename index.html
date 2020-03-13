@@ -1,73 +1,77 @@
 <!doctype html>
 
 <html lang="pt-BR">
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>Ronaldinho Já Tá Solto?</title>
-  <meta name="description" content="O Ronaldinho Gaúcho já tá solto?">
+    <meta charset="utf-8">
+
+    <title>Ronaldinho Já Tá Solto?</title>
+    <meta name="description" content="O Ronaldinho Gaúcho já tá solto?">
+    <meta name="author" content="Otacilio">
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 </head>
 
 <body>
 
-  <script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function duration(t0, t1) {
+                let d = (new Date(t1)) - (new Date(t0));
+                let weekdays = Math.floor(d / 1000 / 60 / 60 / 24 / 7);
+                let days = Math.floor(d / 1000 / 60 / 60 / 24 - weekdays * 7);
+                let hours = Math.floor(d / 1000 / 60 / 60 - weekdays * 7 * 24 - days * 24);
+                let minutes = Math.floor(d / 1000 / 60 - weekdays * 7 * 24 * 60 - days * 24 * 60 - hours * 60);
+                let seconds = Math.floor(d / 1000 - weekdays * 7 * 24 * 60 * 60 - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60);
+                let milliseconds = Math.floor(d - weekdays * 7 * 24 * 60 * 60 * 1000 - days * 24 * 60 * 60 * 1000 - hours * 60 * 60 * 1000 - minutes * 60 * 1000 - seconds * 1000);
+                let t = {};
+                ['weekdays', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'].forEach(q => { if (eval(q) > 0) { t[q] = eval(q); } });
+                return t;
+            }
+            var date = new Date();
+            var aaaa = date.getFullYear();
+            var gg = date.getDate();
+            var mm = (date.getMonth() + 1);
+
+            if (gg < 10)
+                gg = "0" + gg;
+
+            if (mm < 10)
+                mm = "0" + mm;
+
+            var cur_day = aaaa + "-" + mm + "-" + gg + "T";
+
+            var hours = date.getHours()
+            var minutes = date.getMinutes()
+
+            if (hours < 10)
+                hours = "0" + hours;
+
+            if (minutes < 10)
+                minutes = "0" + minutes;
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  function duration(t0, t1){
-    let d = (new Date(t1)) - (new Date(t0));
-    let weekdays     = Math.floor(d/1000/60/60/24/7);
-    let days         = Math.floor(d/1000/60/60/24 - weekdays*7);
-    let hours        = Math.floor(d/1000/60/60    - weekdays*7*24            - days*24);
-    let minutes      = Math.floor(d/1000/60       - weekdays*7*24*60         - days*24*60         - hours*60);
-    let seconds      = Math.floor(d/1000          - weekdays*7*24*60*60      - days*24*60*60      - hours*60*60      - minutes*60);
-    let milliseconds = Math.floor(d               - weekdays*7*24*60*60*1000 - days*24*60*60*1000 - hours*60*60*1000 - minutes*60*1000 - seconds*1000);
-    let t = {};
-    ['weekdays', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'].forEach(q=>{ if (eval(q)>0) { t[q] = eval(q); } });
-    return t;
-}
-var date = new Date();
-    var aaaa = date.getFullYear();
-    var gg = date.getDate();
-    var mm = (date.getMonth() + 1);
+            var dataAtual = cur_day + "" + hours + ":" + minutes + ":00.000Z";
 
-    if (gg < 10)
-        gg = "0" + gg;
+            var texto = "Ronaldinho está preso fazem " + duration('2020-03-06T22:00:00.000Z', dataAtual).days + ' dias ' + duration('2020-03-06T22:00:00.000Z', dataAtual).hours + ' horas e ' + + duration('2020-03-06T22:00:00.000Z', dataAtual).minutes + ' minutos';
 
-    if (mm < 10)
-        mm = "0" + mm;
-
-    var cur_day = aaaa + "-" + mm + "-" + gg + "T";
-
-    var hours = date.getHours()
-    var minutes = date.getMinutes()
-
-    if (hours < 10)
-        hours = "0" + hours;
-
-    if (minutes < 10)
-        minutes = "0" + minutes;
+            document.getElementById("tempo").innerHTML = texto;
 
 
-    var dataAtual = cur_day + "" + hours + ":" + minutes + ":00.000Z" ;
-console.log(dataAtual);
+        }, false);
 
-console.log(duration('2020-03-06T00:00:00.000Z', dataAtual));
-var texto = "Ronaldinho está preso fazem " + duration('2020-03-06T00:00:00.000Z', dataAtual).days + ' dias '+ duration('2020-03-06T00:00:00.000Z', dataAtual).hours + ' horas e '+ + duration('2020-03-06T00:00:00.000Z', dataAtual).minutes +' minutos'; 
+    </script>
 
-document.getElementById("tempo").innerHTML = texto;
+    <input id="nigth-mode" type="checkbox" onclick="nigthMode()" value="1"> <span style="font-size: 12px">Dark Mode
+        ON/OFF</span>
+    <h1 id="situation" style="font-size: 190px; margin-top: 42; text-align: center;">Não</h1>
 
+    <h3 style="text-align: center;" id="tempo"> </h3>
 
-
-}, false);
-
-  </script>
-
-
-  
-  <h1 style="font-size: 190px; margin-top: 42; text-align: center;">Não</h1>
-
-  <h3 style="text-align: center;" id="tempo">  </h3>
+    <script src="./index.js"></script>
 </body>
+
 </html>
